@@ -6,29 +6,37 @@
     <title>USB Recycle - Tecnología Reacondicionada y Sostenible</title>
     <style>
         :root {
-            --primary: #2e7d32;
-            --secondary: #81c784;
-            --accent: #ff8f00;
-            --light: #f5f5f5;
-            --dark: #212121;
+            --primary: #10b981;
+            --primary-light: #3b82f6;
+            --secondary: #2563eb;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--dark);
+            background-color: white;
             line-height: 1.6;
         }
         
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
         }
         
         .container {
@@ -37,196 +45,423 @@
             margin: 0 auto;
         }
         
-        .header-content {
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #0d9f6e;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 0;
         }
         
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 0.75rem;
         }
         
         .logo img {
-            height: 50px;
+            height: 40px;
         }
         
         .logo-text {
-            font-weight: bold;
-            font-size: 1.5rem;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--primary);
         }
         
         .logo-slogan {
+            font-size: 0.875rem;
+            color: var(--gray);
             font-style: italic;
-            font-size: 0.9rem;
-            opacity: 0.9;
         }
         
         nav ul {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 1.5rem;
         }
         
         nav a {
-            color: white;
-            text-decoration: none;
             font-weight: 500;
+            color: var(--dark);
             transition: color 0.3s;
+            position: relative;
         }
         
         nav a:hover {
-            color: var(--secondary);
+            color: var(--primary);
         }
         
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 5rem 0;
+            padding: 6rem 0;
             text-align: center;
         }
         
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
         }
         
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
         }
         
-        .btn:hover {
-            background-color: #ff6d00;
-        }
-        
-        section {
-            padding: 4rem 0;
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background-color: var(--light);
         }
         
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
-            color: var(--primary);
         }
         
-        .about-content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .about-image {
-            flex: 1;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .mission-vision {
-            background-color: var(--light);
-        }
-        
-        .mv-container {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .mv-card {
-            flex: 1;
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .mv-card h3 {
-            color: var(--primary);
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 0.5rem;
+        .section-title h2 {
+            font-size: 2.25rem;
+            color: var(--dark);
             margin-bottom: 1rem;
         }
         
-        .values {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
         }
         
-        .value-card {
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
             background-color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            width: calc(33.333% - 20px);
-            min-width: 250px;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
-        .value-card h4 {
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-icon i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        /* Process Section - Carrusel */
+        .process {
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        .process-carousel {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            margin-top: 3rem;
+        }
+        
+        .process-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .process-slide {
+            min-width: 100%;
+            padding: 0 1rem;
+            box-sizing: border-box;
+        }
+        
+        .slide-content {
+            background-color: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slide-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-text {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .slide-text h3 {
             color: var(--primary);
             margin-bottom: 0.5rem;
         }
         
-        .products {
+        .slide-text p {
+            color: var(--gray);
+        }
+        
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+            gap: 0.5rem;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .carousel-dot.active {
+            background-color: var(--primary);
+        }
+        
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .carousel-arrow.left {
+            left: 1rem;
+        }
+        
+        .carousel-arrow.right {
+            right: 1rem;
+        }
+        
+        /* New Products Section - Estilo de la imagen */
+        .product-categories {
+            padding: 5rem 0;
             background-color: var(--light);
         }
         
-        .product-grid {
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .category-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .category-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 5rem 0;
+        }
+        
+        .products-highlight {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem;
+            border-radius: 0.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .products-highlight h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .products-highlight p {
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .product-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 2rem;
         }
         
         .product-card {
             background-color: white;
-            border-radius: 8px;
+            border-radius: 0.5rem;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
         }
         
         .product-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
         
         .product-image {
             height: 200px;
-            background-color: #eee;
+            background-color: #f1f5f9;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
         
         .product-image img {
             max-width: 80%;
             max-height: 80%;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
         }
         
         .product-info {
@@ -234,106 +469,121 @@
         }
         
         .product-info h3 {
-            margin-top: 0;
-            color: var(--primary);
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .product-info p {
+            color: var(--gray);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
         }
         
         .price {
-            font-weight: bold;
-            color: var(--accent);
-            font-size: 1.2rem;
-            margin: 0.5rem 0;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
         }
         
         .original-price {
             text-decoration: line-through;
-            color: #777;
-            font-size: 0.9rem;
+            color: var(--gray);
+            font-size: 0.875rem;
         }
         
-        .benefits {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-        
-        .benefit-card {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            width: calc(50% - 20px);
-            min-width: 300px;
-            display: flex;
-            gap: 15px;
-        }
-        
-        .benefit-icon {
-            font-size: 2rem;
-            color: var(--primary);
-        }
-        
+        /* Team Section - Simplificada con siluetas */
         .team {
+            padding: 5rem 0;
             background-color: var(--light);
         }
         
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 2rem;
+            justify-items: center;
         }
         
         .team-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             text-align: center;
         }
         
         .team-image {
-            height: 180px;
-            background-color: #eee;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            overflow: hidden;
         }
         
-        .team-info {
-            padding: 1.5rem;
+        .team-icon {
+            font-size: 3rem;
+            color: #94a3b8;
         }
         
         .team-info h3 {
-            margin-top: 0;
-            color: var(--primary);
+            font-size: 1rem;
+            color: var(--dark);
         }
         
-        .team-info p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
+        /* Contact Section */
         .contact {
-            background-color: var(--primary);
-            color: white;
+            padding: 5rem 0;
         }
         
         .contact-container {
-            display: flex;
-            gap: 40px;
-        }
-        
-        .contact-info {
-            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
         }
         
         .contact-info h3 {
-            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .contact-info p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+        
+        .contact-details {
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
         }
         
         .contact-form {
-            flex: 1;
             background-color: white;
             padding: 2rem;
-            border-radius: 8px;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-form h3 {
+            margin-bottom: 1.5rem;
+            color: var(--dark);
         }
         
         .form-group {
@@ -343,16 +593,16 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--dark);
             font-weight: 500;
+            color: var(--dark);
         }
         
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 0.75rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 0.375rem;
             font-family: inherit;
         }
         
@@ -360,63 +610,181 @@
             height: 120px;
         }
         
+        /* Footer */
         footer {
             background-color: var(--dark);
             color: white;
-            padding: 2rem 0;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+        }
+        
+        .footer-logo-text {
+            font-weight: 800;
+            font-size: 1.25rem;
+        }
+        
+        .footer-about p {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #94a3b8;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .newsletter h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+        
+        .newsletter p {
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .newsletter input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.375rem;
+            font-family: inherit;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
             text-align: center;
+            color: #94a3b8;
+            font-size: 0.875rem;
         }
         
         .social-links {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 1rem 0;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
         
         .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: #334155;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            font-size: 1.5rem;
+            transition: background-color 0.3s;
         }
         
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .header-content {
+            .header-container {
                 flex-direction: column;
-                text-align: center;
-                gap: 15px;
+                gap: 1rem;
             }
             
             nav ul {
-                justify-content: center;
-            }
-            
-            .about-content, .mv-container, .contact-container {
                 flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+                display: none;
             }
             
-            .value-card, .benefit-card {
-                width: 100%;
+            nav ul.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            
+            .hero p {
+                font-size: 1.125rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .slide-content {
+                height: auto;
+            }
+            
+            .slide-image {
+                height: 200px;
             }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <div class="container header-content">
+        <div class="container header-container">
             <div class="logo">
-                <img src="https://via.placeholder.com/50x50/2e7d32/ffffff?text=USB" alt="USB Recycle Logo">
+                <img src="https://via.placeholder.com/50x50/2563eb/ffffff?text=USB" alt="USB Recycle Logo">
                 <div>
                     <div class="logo-text">USB RECYCLE</div>
                     <div class="logo-slogan">"Reciclamos pero no juzgamos"</div>
                 </div>
             </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
             <nav>
-                <ul>
+                <ul id="navMenu">
                     <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#proceso">Proceso</a></li>
                     <li><a href="#productos">Productos</a></li>
-                    <li><a href="#beneficios">Beneficios</a></li>
                     <li><a href="#equipo">Equipo</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
@@ -425,56 +793,172 @@
     </header>
 
     <section class="hero" id="inicio">
-        <div class="container">
-            <h1>Tecnología reacondicionada, planeta sostenible</h1>
-            <p>En USB Recycle nos especializamos en la recolección, recomposición y venta de hardware reacondicionado a precios accesibles, reduciendo el desperdicio electrónico.</p>
-            <a href="#productos" class="btn">Ver productos</a>
-        </div>
-    </section>
-
-    <section id="nosotros">
-        <div class="container">
-            <h2 class="section-title">Sobre Nosotros</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>USB Recycle es una empresa que se especializa en la recolección, recomposición y venta de hardware reacondicionado a precios accesibles, por eso su nombre (usado, salvado y barato).</p>
-                    <p>Según el Programa para el Medio Ambiente de las Naciones Unidas, se generan cerca de 50 millones de toneladas de desechos electrónicos al año, y la mayoría no pasan por el sistema de reciclaje óptimo para el medio ambiente. Nuestro objetivo principal es reducir el desperdicio electrónico y proporcionar soluciones tecnológicas asequibles para individuos y empresas.</p>
-                    <p>Es una empresa con fines de lucro ya que, a pesar de que se tomarían equipos de hardware viejo disponibles en la sociedad, se repartirán para ser vendidos una vez que se encuentren en buen estado nuevamente.</p>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tecnología reciclada">
-                </div>
+        <div class="container hero-content">
+            <h1 class="fade-in">Tecnología reacondicionada, planeta sostenible</h1>
+            <p class="fade-in delay-1">En USB Recycle nos especializamos en la recolección, recomposición y venta de hardware reacondicionado a precios accesibles, reduciendo el desperdicio electrónico.</p>
+            <div class="hero-buttons fade-in delay-2">
+                <a href="#productos" class="btn">Ver productos</a>
+                <a href="#proceso" class="btn btn-secondary">Nuestro proceso</a>
             </div>
         </div>
     </section>
 
-    <section class="mission-vision">
+    <section class="features" id="features">
         <div class="container">
-            <h2 class="section-title">Nuestra Misión, Visión y Valores</h2>
-            <div class="mv-container">
-                <div class="mv-card">
-                    <h3>Misión</h3>
-                    <p>Minimizar el impacto ambiental de los residuos electrónicos, ofreciendo tecnología accesible y de calidad.</p>
-                </div>
-                <div class="mv-card">
-                    <h3>Visión</h3>
-                    <p>Transformar el mundo en un lugar de basura electrónica cero.</p>
-                </div>
+            <div class="section-title">
+                <h2>¿Por qué elegir USB Recycle?</h2>
+                <p>Contribuye al medio ambiente mientras obtienes tecnología de calidad a precios accesibles</p>
             </div>
             
-            <h3 style="text-align: center; margin-top: 3rem; color: var(--primary)">Nuestros Valores</h3>
-            <div class="values">
-                <div class="value-card">
-                    <h4>Compromiso</h4>
-                    <p>Reducción de residuos electrónicos y el cuidado del medio ambiente.</p>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sostenibilidad Ambiental</h3>
+                    <p>Reducimos los desechos electrónicos y su impacto negativo en el medio ambiente mediante la reutilización responsable.</p>
                 </div>
-                <div class="value-card">
-                    <h4>Responsabilidad/Honestidad</h4>
-                    <p>Operamos con ética y transparencia en cada etapa del proceso, garantizamos la protección de los datos personales de nuestros clientes.</p>
+                <div class="feature-card fade-in delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Ahorro Económico</h3>
+                    <p>Productos de calidad con hasta 70% de descuento sobre el precio original, con garantía incluida.</p>
                 </div>
-                <div class="value-card">
-                    <h4>Empatía</h4>
-                    <p>Proporcionamos tecnología funcional y económica para todos.</p>
+                <div class="feature-card fade-in delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Seguridad de Datos</h3>
+                    <p>Garantizamos el borrado seguro de todos los datos en los dispositivos que reacondicionamos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process" id="proceso">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro Proceso de Reutilización</h2>
+                <p>Cada dispositivo pasa por un riguroso proceso antes de estar disponible para su venta</p>
+            </div>
+            
+            <div class="process-carousel">
+                <div class="carousel-arrow left" onclick="prevSlide()">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="carousel-arrow right" onclick="nextSlide()">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                
+                <div class="process-track" id="processTrack">
+                    <!-- Slide 1 -->
+                    <div class="process-slide">
+                        <div class="slide-content">
+                            <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1581093450021-4a7360e9a7f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                            <div class="slide-text">
+                                <h3>1. Recolección</h3>
+                                <p>Recibimos componentes electrónicos en desuso de empresas y particulares, evitando que terminen en vertederos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="process-slide">
+                        <div class="slide-content">
+                            <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                            <div class="slide-text">
+                                <h3>2. Clasificación</h3>
+                                <p>Evaluamos y clasificamos cada componente por tipo, condición y potencial de reutilización.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3 -->
+                    <div class="process-slide">
+                        <div class="slide-content">
+                            <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1581094794327-5a5b0a0a5b0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                            <div class="slide-text">
+                                <h3>3. Reparación</h3>
+                                <p>Nuestro equipo técnico repara y restaura los componentes funcionales a su estado óptimo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 4 -->
+                    <div class="process-slide">
+                        <div class="slide-content">
+                            <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1581094794327-5a5b0a0a5b0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                            <div class="slide-text">
+                                <h3>4. Reensamblaje</h3>
+                                <p>Combinamos componentes reutilizados con piezas nuevas cuando es necesario para crear productos funcionales.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 5 -->
+                    <div class="process-slide">
+                        <div class="slide-content">
+                            <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1581094794327-5a5b0a0a5b0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                            <div class="slide-text">
+                                <h3>5. Control de Calidad</h3>
+                                <p>Cada producto pasa por rigurosas pruebas para garantizar su funcionamiento y durabilidad.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 6 -->
+                    <div class="process-slide">
+                        <div class="slide-content">
+                            <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1581094794327-5a5b0a0a5b0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                            <div class="slide-text">
+                                <h3>6. Venta</h3>
+                                <p>Ofrecemos los productos reacondicionados con garantía y a precios accesibles.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-nav" id="carouselNav">
+                    <!-- Los puntos de navegación se generan con JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestras Categorías</h2>
+                <p>Encuentra el equipo perfecto para tus necesidades</p>
+            </div>
+            
+            <div class="category-grid">
+                <div class="category-card fade-in">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>LAPTOPS</h3>
+                    <p>Equipos corporativos, listos para una experiencia superior</p>
+                    <a href="#" class="btn btn-outline">Conseguir la tuya →</a>
+                </div>
+                
+                <div class="category-card fade-in delay-1">
+                    <div class="category-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>COMPUTADORAS</h3>
+                    <p>Todo lo que necesitas y más, al mejor precio del mercado</p>
+                    <a href="#" class="btn btn-outline">Comprar ahora →</a>
+                </div>
+                
+                <div class="category-card fade-in delay-2">
+                    <div class="category-icon">
+                        <i class="fas fa-tablet-alt"></i>
+                    </div>
+                    <h3>TABLETS</h3>
+                    <p>Dispositivos ideales para tus necesidades móviles</p>
+                    <a href="#" class="btn btn-outline">Ver tablets →</a>
                 </div>
             </div>
         </div>
@@ -482,98 +966,52 @@
 
     <section class="products" id="productos">
         <div class="container">
-            <h2 class="section-title">Nuestros Productos</h2>
-            <div class="product-grid">
-                <div class="product-card">
+            <div class="products-highlight">
+                <h2>LOS MEJORES EQUIPOS REACONDICIONADOS</h2>
+                <p>Sumamos equipos todas las semanas, encuentra el ideal para ti</p>
+                <a href="#" class="btn">Ir a la tienda →</a>
+            </div>
+            
+            <div class="section-title">
+                <h2>Productos Destacados</h2>
+                <p>Lo mejor de nuestro catálogo</p>
+            </div>
+            
+            <div class="product-list">
+                <div class="product-card fade-in">
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Laptop reacondicionada">
                     </div>
                     <div class="product-info">
-                        <h3>Laptop HP EliteBook</h3>
-                        <p>Intel Core i5, 8GB RAM, 256GB SSD</p>
+                        <h3>LENOVO T470</h3>
+                        <p>Todo lo que necesitas y más, al mejor precio del mercado. En 6 cuotas sin interés.</p>
                         <div class="price">$120.000</div>
                         <div class="original-price">Precio original: $250.000</div>
-                        <a href="#" class="btn">Comprar</a>
+                        <a href="#" class="btn">Comprar ahora →</a>
                     </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card fade-in delay-1">
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Monitor reacondicionado">
                     </div>
                     <div class="product-info">
-                        <h3>Monitor Dell 24"</h3>
-                        <p>Full HD, 1920x1080, HDMI/VGA</p>
-                        <div class="price">$45.000</div>
-                        <div class="original-price">Precio original: $90.000</div>
-                        <a href="#" class="btn">Comprar</a>
+                        <h3>LENOVO THINKPAD</h3>
+                        <p>La Thinkpad ideal para tus necesidades profesionales y personales.</p>
+                        <div class="price">$95.000</div>
+                        <div class="original-price">Precio original: $190.000</div>
+                        <a href="#" class="btn">Comprar ahora →</a>
                     </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card fade-in delay-2">
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="PC de escritorio">
                     </div>
                     <div class="product-info">
-                        <h3>PC de Escritorio</h3>
-                        <p>Intel Core i3, 8GB RAM, 500GB HDD</p>
+                        <h3>DELL OPTIPLEX</h3>
+                        <p>Potente computadora de escritorio para trabajo y entretenimiento.</p>
                         <div class="price">$80.000</div>
                         <div class="original-price">Precio original: $150.000</div>
-                        <a href="#" class="btn">Comprar</a>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Teclado y mouse">
-                    </div>
-                    <div class="product-info">
-                        <h3>Kit Teclado + Mouse</h3>
-                        <p>Inalámbrico, USB, ergonómico</p>
-                        <div class="price">$8.000</div>
-                        <div class="original-price">Precio original: $15.000</div>
-                        <a href="#" class="btn">Comprar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="beneficios">
-        <div class="container">
-            <h2 class="section-title">Beneficios de Elegirnos</h2>
-            <div class="benefits">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <div>
-                        <h3>Sostenibilidad Ambiental</h3>
-                        <p>Contribuyes a reducir los desechos electrónicos y su impacto en el medio ambiente.</p>
-                    </div>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <div>
-                        <h3>Ahorro Económico</h3>
-                        <p>Productos de calidad a precios significativamente más bajos que los nuevos.</p>
-                    </div>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div>
-                        <h3>Seguridad de Datos</h3>
-                        <p>Garantizamos el borrado seguro de todos los datos en los dispositivos que reacondicionamos.</p>
-                    </div>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <div>
-                        <h3>Garantía</h3>
-                        <p>Todos nuestros productos incluyen garantía y han pasado rigurosos controles de calidad.</p>
+                        <a href="#" class="btn">Comprar ahora →</a>
                     </div>
                 </div>
             </div>
@@ -582,51 +1020,67 @@
 
     <section class="team" id="equipo">
         <div class="container">
-            <h2 class="section-title">Nuestro Equipo</h2>
+            <div class="section-title">
+                <h2>Nuestro Equipo</h2>
+                <p>El talento humano detrás de USB Recycle</p>
+            </div>
+            
             <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-icon">
-                        <i class="fas fa-user"></i>
+                <div class="team-card fade-in">
+                    <div class="team-image">
+                        <div class="team-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
                     </div>
                     <div class="team-info">
                         <h3>Matías Muntaner</h3>
                     </div>
                 </div>
-                <div class="team-card">
-                    <div class="team-icon">
-                        <i class="fas fa-user"></i>
+                <div class="team-card fade-in delay-1">
+                    <div class="team-image">
+                        <div class="team-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
                     </div>
                     <div class="team-info">
                         <h3>Renato Litiumiuk</h3>
                     </div>
                 </div>
-                <div class="team-card">
-                    <div class="team-icon">
-                        <i class="fas fa-user"></i>
+                <div class="team-card fade-in delay-2">
+                    <div class="team-image">
+                        <div class="team-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
                     </div>
                     <div class="team-info">
                         <h3>Leandro Callizaya Flores</h3>
                     </div>
                 </div>
-                <div class="team-card">
-                    <div class="team-icon">
-                        <i class="fas fa-user"></i>
+                <div class="team-card fade-in">
+                    <div class="team-image">
+                        <div class="team-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
                     </div>
                     <div class="team-info">
                         <h3>Lorenzo De Mauri</h3>
                     </div>
                 </div>
-                <div class="team-card">
-                    <div class="team-icon">
-                        <i class="fas fa-user"></i>
+                <div class="team-card fade-in delay-1">
+                    <div class="team-image">
+                        <div class="team-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
                     </div>
                     <div class="team-info">
                         <h3>Carolina Muñoz</h3>
                     </div>
                 </div>
-                <div class="team-card">
-                    <div class="team-icon">
-                        <i class="fas fa-user"></i>
+                <div class="team-card fade-in delay-2">
+                    <div class="team-image">
+                        <div class="team-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
                     </div>
                     <div class="team-info">
                         <h3>Pilar Díaz Gaik</h3>
@@ -638,22 +1092,38 @@
 
     <section class="contact" id="contacto">
         <div class="container">
-            <h2 class="section-title" style="color: white;">Contacto</h2>
+            <div class="section-title">
+                <h2>Contacto</h2>
+                <p>¿Tienes preguntas o quieres colaborar con nosotros? Escríbenos</p>
+            </div>
+            
             <div class="contact-container">
-                <div class="contact-info">
+                <div class="contact-info fade-in">
                     <h3>Información de Contacto</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Dirección: Buenos Aires, Argentina</p>
-                    <p><i class="fas fa-phone"></i> Teléfono: +54 11 1234-5678</p>
-                    <p><i class="fas fa-envelope"></i> Email: info@usbrecycle.com</p>
+                    <p>Estamos comprometidos con la reducción de residuos electrónicos y queremos escuchar tus ideas y preguntas.</p>
                     
-                    <h3 style="margin-top: 2rem;">Síguenos</h3>
-                    <p>Conéctate con nosotros en redes sociales:</p>
-                    <a href="https://www.instagram.com/usb_recycle?igsh=MWs3b2UyNnBzZ3U2dg%3D%3D&utm_source=qr" target="_blank" style="color: white; text-decoration: none;">
-                        <i class="fab fa-instagram"></i> @usb_recycle
-                    </a>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Buenos Aires, Argentina</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+54 11 1234-5678</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@usbrecycle.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-instagram"></i>
+                            <a href="https://www.instagram.com/usb_recycle?igsh=MWs3b2UyNnBzZ3U2dg%3D%3D&utm_source=qr" target="_blank">@usb_recycle</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="contact-form">
-                    <h3 style="color: var(--primary);">Envíanos un mensaje</h3>
+                
+                <div class="contact-form fade-in delay-1">
+                    <h3>Envíanos un mensaje</h3>
                     <form>
                         <div class="form-group">
                             <label for="name">Nombre</label>
@@ -676,19 +1146,114 @@
 
     <footer>
         <div class="container">
-            <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
-                <img src="https://via.placeholder.com/50x50/2e7d32/ffffff?text=USB" alt="USB Recycle Logo">
-                <div class="logo-text">USB RECYCLE</div>
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="https://via.placeholder.com/50x50/2563eb/ffffff?text=USB" alt="USB Recycle Logo">
+                        <div class="footer-logo-text">USB RECYCLE</div>
+                    </div>
+                    <p>"Reciclamos pero no juzgamos" - Tecnología reacondicionada para un planeta más sostenible.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/usb_recycle?igsh=MWs3b2UyNnBzZ3U2dg%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#proceso">Proceso</a></li>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#equipo">Equipo</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Productos</h4>
+                    <ul>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">PCs de Escritorio</a></li>
+                        <li><a href="#">Monitores</a></li>
+                        <li><a href="#">Accesorios</a></li>
+                    </ul>
+                </div>
+                
+                <div class="newsletter">
+                    <h4>Newsletter</h4>
+                    <p>Suscríbete para recibir nuestras ofertas y noticias.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu email" required>
+                        <button type="submit" class="btn">Suscribirse</button>
+                    </form>
+                </div>
             </div>
-            <p>"Reciclamos pero no juzgamos"</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.instagram.com/usb_recycle?igsh=MWs3b2UyNnBzZ3U2dg%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 USB Recycle. Todos los derechos reservados.</p>
             </div>
-            <p>&copy; 2023 USB Recycle. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <script>
+        // Menú móvil
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Carrusel de proceso
+        const track = document.getElementById('processTrack');
+        const nav = document.getElementById('carouselNav');
+        const slides = document.querySelectorAll('.process-slide');
+        let currentSlide = 0;
+        
+        // Crear puntos de navegación
+        slides.forEach((slide, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('carousel-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+            });
+            nav.appendChild(dot);
+        });
+        
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateCarousel();
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateCarousel();
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateCarousel();
+        }
+        
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Actualizar puntos activos
+            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        // Autoavance del carrusel
+        setInterval(nextSlide, 5000);
+    </script>
 </body>
 </html>
